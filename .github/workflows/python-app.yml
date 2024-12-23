@@ -1,9 +1,9 @@
 name: Run Bot Script
 
 on:
-  workflow_dispatch:  # Permet de déclencher manuellement le workflow
+  workflow_dispatch:  # Permet de déclencher manuellement
   schedule:
-    - cron: "0 */3 * * *"  # Exécute le script toutes les 3 heures
+    - cron: "0 */3 * * *"  # Exécution toutes les 3 heures
 
 jobs:
   run-bot:
@@ -18,15 +18,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9  # Utilisation de Python 3.9
+          python-version: 3.8  # Utilise Python 3.8
 
       # Étape 3 : Installation des dépendances
       - name: Install dependencies
         run: |
-          python --version  # Vérification de la version de Python
           pip install --upgrade pip
-          pip install kucoin==2.1.2
+          pip install kucoin
 
       # Étape 4 : Exécution du script
       - name: Run bot script
         run: python bot_alertes.py
+        
