@@ -27,7 +27,10 @@ jobs:
         pip install schedule
         pip install kucoin
         pip install requests
-
+        
+    - name: Install kucoin from GitHub
+      run: pip install git+https://github.com/Kucoin/kucoin-python-sdk.git
+  
     - name: Run script
       run: python bot.py
       
