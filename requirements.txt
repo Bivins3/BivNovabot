@@ -1,2 +1,2 @@
-kucoin==2.1.2
+kucoin
 schedule==1.2.2
