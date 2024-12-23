@@ -1,31 +1,38 @@
 name: Run Bot Script
 
 on:
-  workflow_dispatch:  # Permet de déclencher manuellement
-  schedule:
-    - cron: "0 */3 * * *"  # Exécution toutes les 3 heures
+  push:
+    branches:
+      - main
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
 
     steps:
-      # Étape 1 : Récupération du code
-      - name: Check out code
-        uses: actions/checkout@v3
+    # Étape 1 : Configurer Python
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
 
-      # Étape 2 : Configuration de Python
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
+    # Étape 2 : Télécharger le code source
+    - name: Check out code
+      uses: actions/checkout@v2
 
-      # Étape 3 : Installation des dépendances
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install git+https://github.com/Kucoin/kucoin-python.git
+    # Étape 3 : Effacer le cache pip (optionnel, pour éviter les conflits)
+    - name: Clear pip cache
+      run: pip cache purge
 
-      # Étape 4 : Exécution du script
-      - name: Run bot script
-        run: python bot_alertes.py
+    # Étape 4 : Installer les dépendances depuis requirements.txt
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    # Étape 5 : Installer kucoin depuis GitHub (si nécessaire)
+    - name: Install kucoin from GitHub
+      run: pip install git+https://github.com/Kucoin/kucoin-python-sdk.git
+
+    # Étape 6 : Exécuter ton script Python
+    - name: Run bot script
+      run: python bot_alertes.py
+      
