@@ -18,15 +18,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8  # Utilise Python 3.8
+          python-version: 3.9
 
       # Étape 3 : Installation des dépendances
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install kucoin
+          pip install kucoin-python  # Installe la bibliothèque à partir de PyPI ou depuis GitHub si besoin
 
       # Étape 4 : Exécution du script
       - name: Run bot script
         run: python bot_alertes.py
-        
