@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install kucoin-python  # Installe la bibliothèque à partir de PyPI ou depuis GitHub si besoin
+          pip install git+https://github.com/Kucoin/kucoin-python.git  # Installation depuis GitHub
 
       # Étape 4 : Exécution du script
       - name: Run bot script
