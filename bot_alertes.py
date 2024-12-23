@@ -1,11 +1,9 @@
-
 import time
+from datetime import datetime
 
-def send_alert():
-    print("🔔 Alerte : Nouvelle notification en temps réel !")
+print("Le bot est en cours d'exécution...")
 
-if __name__ == "__main__":
-    print("Le bot est en cours d'exécution...")
-    while True:
-        send_alert()
-        time.sleep(10)  # Envoie une alerte toutes les 10 secondes
+while True:
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"🔔 Alerte : Nouvelle notification en temps réel à {current_time} !")
+    time.sleep(3 * 60 * 60)  # Pause de 3 heures
